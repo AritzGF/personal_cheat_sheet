@@ -1,0 +1,38 @@
+#Definir nombre del que manipula el proyecto
+git config --global user.name "Nombre Apellidos"
+#Define correo del que manipula el correo 
+git config --global user.email "nobody@ikasle.egibide.org" 
+#Ves la configuracion global
+git config --global --list 
+
+#Crear proyecto
+
+#Inicia el proyecto
+git init "Nombre_Proyecto"
+#Muestra estado
+git status 
+
+#Añade archivo para el commit
+git add "archibo_concambios" 
+#Crea el commit
+git commit -m "Nombre_commit" 
+#historial de commits
+git log 
+
+#copias el git de un repo
+git clone "URL_del_repo"
+#Subir cambios al servidor
+git push 
+#vincula repo local con repo en la nube
+git remote add "rama(normalmete "main" o "origin")" "URL_del_repo" 
+#Primer push
+git push -u origin master 
+
+#Ramificar
+
+#Crea una rama
+git branch "Nombre_rama"
+#Moverte entre ramas 
+git switch "Nombre_rama"
+#Fusiona rama actual con rama mencionada
+git merge "Nombre_rama" 
