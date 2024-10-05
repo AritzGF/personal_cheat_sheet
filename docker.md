@@ -5,52 +5,51 @@ docker version
 
 #Crear contenedor
 docker run -d -p 5000:80 --name web nginxdemos/hello
-# -d "Modo Demon"
-# -p "Puertos"
-# --name "Nombre del contenedor"
+- -d `Modo Demon`
+- -p `Puertos`
+- --name `Nombre del contenedor`
 
 #Muestra contenedores
 docker ps
-# -a Muestra todos no solo los activos
-# -q Solo muestra la IP
-# --filter aplica filtro
+- -a Muestra todos no solo los activos
+- -q Solo muestra la IP
+- --filter aplica filtro
 
-
-docker stop "Nombre_contenedor"
-docker start "Nombre_contenedor"
-docker restart "Nombre_contenedor"
+docker stop `Nombre-contenedor`
+docker start `Nombre-contenedor`
+docker restart `Nombre-contenedor`
 
 #Borra contenedores
 docker rm
-# -f Fuerza a borrar el contenedor
-# -V Borra los contenedores asignados
+- -f Fuerza a borrar el contenedor
+- -V Borra los contenedores asignados
 
 #Borra todos los contenedores
 docker rm -f $(docker ps -aq)
 
 #Copiar archivos en contenedores y desde contenedores
 
-#Copia del contenedor "Web" /etc/hostname a la ubicacion actual "."
+#Copia del contenedor "web" /etc/hostname a la ubicacion actual "."
 docker cp web:/etc/hostname .
 #Copia fichero.txt al contenedor web en la carpeta /tmp
 docker cp fichero.txt web:/tmp
 
 #exec ejecuta comandos en el contenedor indicado
-docker exec "Nombre_contenedor" "Comando_para_ejecutar"
-# -i Mantiene la entrada abierta
-# -t Asigna un pseudo-terminal (tty), lo que hace que la salida sea más legible y te permite usar características interactivas del shell. (Gaby tiene que explicarlo)
-# -d ejecuta en segundo plano
+docker exec `Nombre-contenedor` `Comando-para-ejecutar`
+- -i Mantiene la entrada abierta
+- -t Asigna un pseudo-terminal (tty), lo que hace que la salida sea más legible y te permite usar características interactivas del shell. (Gaby tiene que explicarlo)
+- -d ejecuta en segundo plano
 
 #habre una Shell en del contenedor
-docker exec -it "Nombre_contenedor" /bin/sh
+docker exec -it `Nombre_contenedor` /bin/sh
 
-#COMPOSE
-#Nombre del archivo "docker-compose.yml"
+**COMPOSE**
+*Nombre del archivo "docker-compose.yml*
 
 #Crea el compose
 docker compose up
-# -d Los ejecuta en segundo plano
-# --build Fuerza a recostruir los contenedores
+- -d Los ejecuta en segundo plano
+- --build Fuerza a recostruir los contenedores
 
 #Descarga las imagenes del compos
 docker compose pull
@@ -63,36 +62,36 @@ docker compose rm
 #Borra todos los contenedores redes y volumenes creados con compose
 docker compose down
 
-#Ejemplo docker-compose.yml
+**Ejemplo docker-compose.yml**
 
 #Definimos contenedores
 services:
-	#Nombre del contenedor
+#Nombre del contenedor
 	bd:
-		#Imagen que vamos a usar
+#Imagen que vamos a usar
 		image: mariadb:11.4
-		#Configuraciones de la imagen
+#Configuraciones de la imagen
 		environment:
 			- MYSQL_ROOT_PASSWORD=12345Abcde
 			- MYSQL_DATABASE=egibide
 			- MYSQL_USER=egibide
 			- MYSQL_PASSWORD=12345Abcde
-		#Mapeo de los volumenes si va a usar
+#Mapeo de los volumenes si va a usar
 		volumes:
-			# -Nombre_del_volumen:Punto_de_montado
+# -Nombre_del_volumen:Punto_de_montado
 			- mariadb:/var/lib/mysql
 		expose:
 			- 3306
 	web:
 		image: php:8.3-apache
-		#Si depende de otro contenedor
+#Si depende de otro contenedor
 		depends_on:
 			- bd
-		#Volumenlocal
+#Volumenlocal
 		volumes:
-			#-Ruta_local:Punto_de_Montado
+#-Ruta_local:Punto_de_Montado
 			- ./www:/var/www/html
-		#Definimos puertos
+#Definimos puertos
 		ports:
 			- "80:80"
 #Definimos volumenes
@@ -102,18 +101,18 @@ volumes:
 
 #---------------
 
-#Docker Build
-#El nombre del archivo tiene que ser "Dockerfile"
+**Docker Build**
+*El nombre del archivo tiene que ser "Dockerfile*
 
 #Crea la iso
-docker build . --tag "Nombre_Imagen"
+docker build . --tag `Nombre-Imagen`
 
 #Poner etiquetas para subirlas a dockerhub
-docker tag "Nombre_ISO" "Nombre_Usuario/Nombre_ISO:etiqueta"
+docker tag `Nombre_ISO` `Nombre-Usuario/Nombre-ISO:etiqueta`
 
-#Ejemplo Dockerfile
+**Ejemplo Dockerfile**
 
-#definir imagen base
+#Definir imagen base
 FROM debian:latest 
 #RUN corre comandos en el contenedor
 RUN apt-get update -y
