@@ -15,7 +15,7 @@ docker run -d -p 5000:80 --name web nginxdemos/hello
 - -p *Puertos*
 - --name *Nombre del contenedor*
 
-**Muestra contenedores***
+**Muestra contenedores**
 ```
 docker ps
 ```
