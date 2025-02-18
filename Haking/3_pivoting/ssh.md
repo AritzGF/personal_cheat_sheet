@@ -48,6 +48,4 @@ Host host4
     HostName 192.168.28.103
     User admin
     ProxyJump host3
-
-
 ```
